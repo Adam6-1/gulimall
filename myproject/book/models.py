@@ -13,7 +13,7 @@ from django.db import models
 
 class BookInfo(models.Model):
     # id
-    name=models.CharField(max_length=10)
+    name = models.CharField(max_length=10)
 
 
 # 人物 先复制过来。后期将原理
