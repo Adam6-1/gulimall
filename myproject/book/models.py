@@ -20,6 +20,8 @@ class BookInfo(models.Model):
         return self.name
 
 # 人物 先复制过来。后期将原理
+
+
 class PeopleInfo(models.Model):
     name = models.CharField(max_length=10)
     gender = models.BooleanField()
