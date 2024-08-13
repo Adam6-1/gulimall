@@ -13,5 +13,11 @@ from django.http import HttpResponse
 
 # 期望用户输入127.0.0.1:8000/index/
 def index(request):
-    return HttpResponse("ok")
+
+    # 模拟数据查询
+    context ={
+
+        'name': '马上双11，点击有惊喜'
+    }
+    return render(request, 'book/index.html',context=context)
 
