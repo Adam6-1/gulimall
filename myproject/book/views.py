@@ -15,9 +15,9 @@ from django.http import HttpResponse
 def index(request):
 
     # 模拟数据查询
-    context ={
+    context = {
 
         'name': '马上双11，点击有惊喜'
     }
-    return render(request, 'book/index.html',context=context)
+    return render(request, 'book/index.html', context=context)
 
