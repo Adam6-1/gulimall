@@ -23,7 +23,7 @@ SECRET_KEY = 'django-insecure-6vxi*jxx&lbjrtb($m+vawy-te5(*z7)64lc_k%(8f(x83@20s
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
+# ip地址使用
 ALLOWED_HOSTS = ['*']
 
 
@@ -52,6 +52,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'myproject.urls'
 
+# 模型
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -79,6 +80,7 @@ WSGI_APPLICATION = 'myproject.wsgi.application'
 
 # sqlite3 关系型数据库
 # 过度了解
+# 数据库驱动
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -110,6 +112,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
 # LANGUAGE_CODE = 'en-us'
+# 时区
 LANGUAGE_CODE = 'zh-Hans'
 
 TIME_ZONE = 'Asia/shanghai' #UTC
@@ -121,8 +124,10 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
-
+# 静态资源
 STATIC_URL = 'static/'
+# 静态资源目录
+STATICFILES_DIRS = [BASE_DIR / 'static']
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
