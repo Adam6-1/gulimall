@@ -104,6 +104,35 @@ book5 = BookInfo.objects.filter(id__in=[1, 3, 5])
 book6 = BookInfo.objects.filter(id__gt=1)
 # 查询1980年发表的图书
 book7 = BookInfo.objects.filter(pub_date__year=1980)
-# 查询1990年1月1日后发表的图书 
+# 查询1990年1月1日后发表的图书
 book8 = BookInfo.objects.filter(pub_date__gt='1990-01-01')
+# 例：查询阅读量大于等于评论量的图书。
+from django.db.models import F
+book9 = BookInfo.objects.filter(readcount__gt=F('commentcount'))
 
+# 查询阅读量大于20并且评论量大于100
+book10 = BookInfo.objects.filter(readcount__gt=20).filter(commentcount__gte=100)
+# 或者
+from django.db.models import Q
+book11 = BookInfo.objects.filter(Q(readcount__gte=10)|Q(commentcount__gte=101))
+
+
+###########################聚合函数##################
+from django.db.models import Sum, Max, Min, Avg, Count
+
+book12 = BookInfo.objects.aggregate(Sum('commentcount'))
+book13 = BookInfo.objects.aggregate(Max('readcount'))
+book14 = BookInfo.objects.aggregate(Min('readcount'))
+
+#################排序###############
+book15 = BookInfo.objects.all().order_by('readcount') # 升序
+book16 = BookInfo.objects.all().order_by('-readcount') # 降序
+
+
+##############2个表的级联查询############
+# 查询书籍为1的所有人物信息
+# 1对多的关系模型中
+# 一对应的模型类对象.多对应的模型类名小写_set
+
+book17 = BookInfo.objects.get(id=1)
+book17.peopleinfo_set.all()
