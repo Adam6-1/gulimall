@@ -28,7 +28,7 @@ class BookInfo(models.Model):
     # 修改表的名字（固定写法）
     class Meta:
         db_table = "bookinfo"
-        verbose_name = "图书信息"  # 后台管理中显示的表名(admin站点使用)
+        verbose_name = ""  # 后台管理中显示的表名(admin站点使用)
 
 
 class PeopleInfo(models.Model):

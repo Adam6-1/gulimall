@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-from book.models import BookInfo
+from book.models import BookInfo, PeopleInfo
+
 
 # Create your views here.
 
@@ -118,6 +119,7 @@ from django.db.models import Sum, Max, Min, Avg, Count
 book12 = BookInfo.objects.aggregate(Sum('commentcount'))
 book13 = BookInfo.objects.aggregate(Max('readcount'))
 book14 = BookInfo.objects.aggregate(Min('readcount'))
+book17 = BookInfo.objects.aggregate(Avg('commentcount'))
 
 #################排序###############
 book15 = BookInfo.objects.all().order_by('readcount') # 升序
@@ -130,4 +132,24 @@ book16 = BookInfo.objects.all().order_by('-readcount') # 降序
 
 book17 = BookInfo.objects.get(id=1)
 book17.peopleinfo_set.all()
+
+
+# 查询人物为1的书籍信息
+person = PeopleInfo.objects.get(id=1)
+book18 = person.book
+
+##############关联过滤查询#################
+# 查询1的数据，条件为n
+# 模型类名.objects.（关联模型类小写_字段名_运算符=值）
+
+
+# 查询图书，要求图书人物为“郭靖”
+book19 = BookInfo.objects.filter(peopleinfo__name__exact='郭靖')
+book20 = BookInfo.objects.filter(peopleinfo__name='郭靖')
+# 查询图书，要求图书中人物的描述包含“八”
+book21 = BookInfo.objects.filter(peopleinfo__description__contains='八')
+
+# 查询书名为“天龙八部”的所有人物
+
+# 查询图书阅读量大于30的所有人物
 
