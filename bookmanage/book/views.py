@@ -4,7 +4,6 @@ from book.models import BookInfo
 
 # Create your views here.
 
-
 def index(request):
     # 1. 获取参数
     # 2. 编写查询代码
@@ -14,9 +13,7 @@ def index(request):
     books = BookInfo.objects.all()
     print(books)
     return HttpResponse("index")
-
 ########################增加数据########################################
-
 
 def add_book(request):
     book = BookInfo(
@@ -26,7 +23,6 @@ def add_book(request):
     )
     book.save()
     return HttpResponse('添加成功')
-
 
 # 方式二
 # objects -- 相当于一个代理 实现增删改查
@@ -116,7 +112,6 @@ book10 = BookInfo.objects.filter(readcount__gt=20).filter(commentcount__gte=100)
 from django.db.models import Q
 book11 = BookInfo.objects.filter(Q(readcount__gte=10)|Q(commentcount__gte=101))
 
-
 ###########################聚合函数##################
 from django.db.models import Sum, Max, Min, Avg, Count
 
@@ -128,7 +123,6 @@ book14 = BookInfo.objects.aggregate(Min('readcount'))
 book15 = BookInfo.objects.all().order_by('readcount') # 升序
 book16 = BookInfo.objects.all().order_by('-readcount') # 降序
 
-
 ##############2个表的级联查询############
 # 查询书籍为1的所有人物信息
 # 1对多的关系模型中
@@ -136,3 +130,4 @@ book16 = BookInfo.objects.all().order_by('-readcount') # 降序
 
 book17 = BookInfo.objects.get(id=1)
 book17.peopleinfo_set.all()
+
